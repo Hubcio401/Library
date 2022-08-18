@@ -50,9 +50,6 @@ public class DB_add_to_table {
             e.printStackTrace();
         }
 
-
-
-
     }
 
 

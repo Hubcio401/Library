@@ -1,7 +1,7 @@
 package com.example.library;
 
 public class Books {
-//    private int id;
+
     private String Title = null;
     private String Author = null;
     private String Genre = null;
@@ -13,9 +13,8 @@ public class Books {
 
     }
 
-
     public Books(String tit, String at,String ger, int hei,String pub){
-//        this.id= iddd;
+
         this.Title = tit;
         this.Author=at;
         this.Genre=ger;
@@ -37,18 +36,10 @@ public class Books {
 //                '}';
     }
 
-    //    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
 
     public String getAuthor() {
         return Author;
     }
-
 
     public String getPublisher() {
         return Publisher;

@@ -7,7 +7,7 @@ public class DBConnect {
     private final static String DBURL = "jdbc:postgresql://127.0.0.1:5432/library";
     private final static String DBUSER = "postgres";
     private final static String DBPASS = "123";
-    private final static String DBDRIVER = "com.mysql.jdbc.Driver";
+//    private final static String DBDRIVER = "com.mysql.jdbc.Driver";
 
     public static Connection connect(){
 

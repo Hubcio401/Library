@@ -1,39 +1,26 @@
 package com.example.library;
 
 import javafx.application.Application;
-import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.*;
-import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Library extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) {
         primaryStage.setTitle("Library");
 
 
         TableView<Books> books_table = new TableView<>();
-
-//        TableColumn<Books,Integer> column_ID = new TableColumn<>("ID");
-//
-//        column_ID.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         TableColumn<Books,String> column1 = new TableColumn<>("Title");
 
@@ -58,7 +45,12 @@ public class Library extends Application {
 
         books_table.getColumns().addAll(column1,column2,column3,column4,column5);
 
-//        books_table.setLayoutX(50);
+        column1.setPrefWidth(280);
+        column2.setPrefWidth(170);
+        column3.setPrefWidth(130);
+        column4.setPrefWidth(80);
+        column5.setPrefWidth(140);
+
 
         TableView<Books> added_books_table = new TableView<>();
 
@@ -84,6 +76,14 @@ public class Library extends Application {
 
         added_books_table.getColumns().addAll(added_column1,added_column2,added_column3,added_column4,added_column5);
 
+
+        added_column1.setPrefWidth(280);
+        added_column2.setPrefWidth(170);
+        added_column3.setPrefWidth(130);
+        added_column4.setPrefWidth(80);
+        added_column5.setPrefWidth(140);
+
+
         added_books_table.setPlaceholder(
                 new Label("Add some books to borrow"));
 
@@ -93,23 +93,15 @@ public class Library extends Application {
 
         TableView.TableViewSelectionModel<Books> selectionModel =
                 books_table.getSelectionModel();
-
-        //sprawdz se selection model dla dwoch tabel bo cosi nie dziala i zobacz hello-view.fxml
 //
         // set selection mode to only 1 row
         selectionModel.setSelectionMode(
                 SelectionMode.SINGLE);
 
 
-//        added_books_table.setLayoutX(200);
-
-
         Button save = new Button("Save");
         Button add = new Button("Add");
         Button remove = new Button("Remove");
-
-//        ArrayList<Books> added_list = new ArrayList<>();
-
 
         add.setOnAction(add_value ->  {
 
@@ -119,9 +111,7 @@ public class Library extends Application {
             int hei= books_table.getSelectionModel().getSelectedItem().getHeight();
             String pub = books_table.getSelectionModel().getSelectedItem().getPublisher();
             Books obj = new Books(tit,auth,gen,hei,pub);
-//            System.out.println(obj);
 
-//            added_list.add(obj);
 
             added_books_table.getItems().add(obj);
 
@@ -155,90 +145,21 @@ public class Library extends Application {
                 Logger.getLogger(Library.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            //
-
-//            DirectoryChooser directoryChooser = new DirectoryChooser();
-//            File selectedDirectory = directoryChooser.showDialog(primaryStage);
-//
-//            if(selectedDirectory == null){
-//                //No Directory selected
-//            }else{
-//
-//                String path = selectedDirectory.getAbsolutePath()+"\\books.txt";
-//                FileWriter fstream = null;
-//                try {
-//                    fstream = new FileWriter(path);
-//                    BufferedWriter books_file = new BufferedWriter(fstream);
-//
-//                    String s = String.valueOf(added_books_table.getItems());
-//                    fstream.write(s);
-//                    System.out.println(s);
-////                    books_file.write(s);
-//
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                System.out.println(selectedDirectory.getAbsolutePath());
-//            }
-//            System.out.println(added_books_table.getItems());
-
         });
 
 
-//        add.setLayoutY(300);
-
+        add.setPrefHeight(150);
+        remove.setPrefHeight(150);
+        save.setPrefHeight(150);
+        add.setPrefWidth(150);
+        remove.setPrefWidth(150);
+        save.setPrefWidth(150);
 
         HBox button_hbox = new HBox(20,add,remove,save);
-//        HBox.setMargin(add, new Insets(10, 10, 10, 10));
 
         button_hbox.setAlignment(Pos.CENTER);
 
-
-
-//        Group group = new Group();
-//        group.getChildren().addAll(save,add,remove);
-//        group.setStyle("-fx-alignment: CENTER;");
-//        add.setLayoutX(300);
-//        remove.setLayoutX(350);
-//        save.setAlignment(Pos.CENTER);
-//        save.setLayoutX(250);
-
-
-//        group.setLayoutX(500);
-
-
-//        group.setLayoutX(100);
-//        group.setLayoutY(100);
-
-
-
         VBox vbox = new VBox(books_table,button_hbox,added_books_table);
-
-
-//        GridPane gridPane = new GridPane(vbox);
-//
-//        gridPane.setMinSize(400,200);
-//
-//        gridPane.setPadding(new Insets(10,10,10,10));
-//
-//        gridPane.setHgap(5);
-//        gridPane.setVgap(5);
-//
-//        gridPane.setAlignment(Pos.CENTER);
-//
-//        gridPane.add(borrow,0,0);
-//        gridPane.add(remove,1,0);
-//        gridPane.add(add,2,0);
-
-
-//        GridPane grid = new GridPane();
-//        grid.setAlignment(Pos.CENTER);
-//        grid.setHgap(10);
-//        grid.setVgap(10);
-//        grid.setPadding(new Insets(25, 25, 25, 25));
-//
-//        add.setStyle("-fx-background-color: yellow;");
 
         Scene main_scene = new Scene(vbox, 800, 600);
         primaryStage.setScene(main_scene);
