@@ -39,7 +39,7 @@
             <scope>test</scope>
         </dependency>
 
-<!--        zaleznosc do postgresql i jdbc -->
+<!--        dependency for postgresql and jdbc -->
 
         <!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
         <dependency>

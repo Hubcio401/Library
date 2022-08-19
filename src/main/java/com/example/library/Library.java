@@ -19,73 +19,76 @@ public class Library extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Library");
 
+//        creating two tableview
 
         TableView<Books> books_table = new TableView<>();
 
-        TableColumn<Books,String> column1 = new TableColumn<>("Title");
+        TableColumn<Books,String> title_column = new TableColumn<>("Title");
 
-        column1.setCellValueFactory(new PropertyValueFactory<>("title"));
+        title_column.setCellValueFactory(new PropertyValueFactory<>("title"));
 
-        TableColumn<Books,String> column2 = new TableColumn<>("Author");
+        TableColumn<Books,String> author_column = new TableColumn<>("Author");
 
-        column2.setCellValueFactory(new PropertyValueFactory<>("author"));
+        author_column.setCellValueFactory(new PropertyValueFactory<>("author"));
 
-        TableColumn<Books,String> column3 = new TableColumn<>("Genre");
+        TableColumn<Books,String> genre_column = new TableColumn<>("Genre");
 
-        column3.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        genre_column.setCellValueFactory(new PropertyValueFactory<>("genre"));
 
-        TableColumn<Books,Integer> column4 = new TableColumn<>("Height");
+        TableColumn<Books,Integer> height_column = new TableColumn<>("Height");
 
-        column4.setCellValueFactory(new PropertyValueFactory<>("height"));
+        height_column.setCellValueFactory(new PropertyValueFactory<>("height"));
 
-        TableColumn<Books,String> column5 = new TableColumn<>("Publisher");
+        TableColumn<Books,String> publisher_column = new TableColumn<>("Publisher");
 
-        column5.setCellValueFactory(new PropertyValueFactory<>("publisher"));
+        publisher_column.setCellValueFactory(new PropertyValueFactory<>("publisher"));
 
 
-        books_table.getColumns().addAll(column1,column2,column3,column4,column5);
+        books_table.getColumns().addAll(title_column,author_column,genre_column,height_column,publisher_column);
 
-        column1.setPrefWidth(280);
-        column2.setPrefWidth(170);
-        column3.setPrefWidth(130);
-        column4.setPrefWidth(80);
-        column5.setPrefWidth(140);
+        title_column.setPrefWidth(280);
+        author_column.setPrefWidth(170);
+        genre_column.setPrefWidth(130);
+        height_column.setPrefWidth(80);
+        publisher_column.setPrefWidth(140);
 
 
         TableView<Books> added_books_table = new TableView<>();
 
-        TableColumn<Books,String> added_column1 = new TableColumn<>("Title");
+        TableColumn<Books,String> added_title_column = new TableColumn<>("Title");
 
-        added_column1.setCellValueFactory(new PropertyValueFactory<>("title"));
+        added_title_column.setCellValueFactory(new PropertyValueFactory<>("title"));
 
-        TableColumn<Books,String> added_column2 = new TableColumn<>("Author");
+        TableColumn<Books,String> added_author_column = new TableColumn<>("Author");
 
-        added_column2.setCellValueFactory(new PropertyValueFactory<>("author"));
+        added_author_column.setCellValueFactory(new PropertyValueFactory<>("author"));
 
-        TableColumn<Books,String> added_column3 = new TableColumn<>("Genre");
+        TableColumn<Books,String> added_genre_column = new TableColumn<>("Genre");
 
-        added_column3.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        added_genre_column.setCellValueFactory(new PropertyValueFactory<>("genre"));
 
-        TableColumn<Books,Integer> added_column4 = new TableColumn<>("Height");
+        TableColumn<Books,Integer> added_height_column = new TableColumn<>("Height");
 
-        added_column4.setCellValueFactory(new PropertyValueFactory<>("height"));
+        added_height_column.setCellValueFactory(new PropertyValueFactory<>("height"));
 
-        TableColumn<Books,String> added_column5 = new TableColumn<>("Publisher");
+        TableColumn<Books,String> added_publisher_column = new TableColumn<>("Publisher");
 
-        added_column5.setCellValueFactory(new PropertyValueFactory<>("publisher"));
+        added_publisher_column.setCellValueFactory(new PropertyValueFactory<>("publisher"));
 
-        added_books_table.getColumns().addAll(added_column1,added_column2,added_column3,added_column4,added_column5);
+        added_books_table.getColumns().addAll(added_title_column,added_author_column,added_genre_column,added_height_column,added_publisher_column);
 
 
-        added_column1.setPrefWidth(280);
-        added_column2.setPrefWidth(170);
-        added_column3.setPrefWidth(130);
-        added_column4.setPrefWidth(80);
-        added_column5.setPrefWidth(140);
+        added_title_column.setPrefWidth(280);
+        added_author_column.setPrefWidth(170);
+        added_genre_column.setPrefWidth(130);
+        added_height_column.setPrefWidth(80);
+        added_publisher_column.setPrefWidth(140);
 
 
         added_books_table.setPlaceholder(
                 new Label("Add some books to borrow"));
+
+//        creating connection to database and displaying records in first tableview
 
         DB_add_to_table.add();
 
@@ -93,11 +96,12 @@ public class Library extends Application {
 
         TableView.TableViewSelectionModel<Books> selectionModel =
                 books_table.getSelectionModel();
-//
+
         // set selection mode to only 1 row
         selectionModel.setSelectionMode(
                 SelectionMode.SINGLE);
 
+//      creating buttons and their functionality
 
         Button save = new Button("Save");
         Button add = new Button("Add");
@@ -159,9 +163,9 @@ public class Library extends Application {
 
         button_hbox.setAlignment(Pos.CENTER);
 
-        VBox vbox = new VBox(books_table,button_hbox,added_books_table);
+        VBox scene_vbox = new VBox(books_table,button_hbox,added_books_table);
 
-        Scene main_scene = new Scene(vbox, 800, 600);
+        Scene main_scene = new Scene(scene_vbox, 800, 600);
         primaryStage.setScene(main_scene);
 
         primaryStage.show();

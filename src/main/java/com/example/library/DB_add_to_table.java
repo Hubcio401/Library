@@ -6,15 +6,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+//adding records to arraylist
+
 public class DB_add_to_table {
 
-    public static ArrayList<Books> books_list = new ArrayList<>();
+    protected static ArrayList<Books> books_list = new ArrayList<>();
 
     public static void add(){
 
         Connection conn = DBConnect.connect();
 
-        Statement stmt = null;
+        Statement stmt ;
 
         try {
             stmt = conn.createStatement();
@@ -51,6 +53,4 @@ public class DB_add_to_table {
         }
 
     }
-
-
 }
